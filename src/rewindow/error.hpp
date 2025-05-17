@@ -1,3 +1,5 @@
+#pragma once
+
 #include <sstream>
 
 #define errLoc __FILE__,__LINE__
@@ -19,4 +21,7 @@ private:
    const char *m_file;
    unsigned long m_line;
    std::stringstream m_stream;
+
+   error(const error&);
+   error& operator=(const error&);
 };

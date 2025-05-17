@@ -1,3 +1,6 @@
+#pragma once
+
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -16,6 +19,8 @@ public:
    std::string getArg(int i) const;
 
 private:
+   commandLine& consumeArg(std::function<void()> f);
+
    const int m_argc;
    const char **m_argv;
    int m_i;

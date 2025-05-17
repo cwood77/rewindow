@@ -19,26 +19,19 @@ commandLine& commandLine::reset()
 
 commandLine& commandLine::literal(const std::string& l)
 {
-   if(m_good)
-   {
-      if(m_i >= m_argc)
-         m_good = false;
-      else
-         m_good = (l == m_argv[m_i++]);
-   }
-   return *this;
+   return consumeArg([&](){ m_good = (l == m_argv[m_i++]); });
 }
 
 commandLine& commandLine::arg()
 {
-   if(m_good)
-   {
-      if(m_i >= m_argc)
-         m_good = false;
-      else
-         m_args.push_back(m_argv[m_i++]);
-   }
-   return *this;
+   return consumeArg([&](){ m_args.push_back(m_argv[m_i++]); });
+}
+
+bool commandLine::end()
+{
+   if(m_good && m_i != m_argc)
+      m_good = false;
+   return m_good;
 }
 
 std::string commandLine::getArg(int i) const
@@ -46,12 +39,14 @@ std::string commandLine::getArg(int i) const
    return m_args[i];
 }
 
-bool commandLine::end()
+commandLine& commandLine::consumeArg(std::function<void()> f)
 {
-   if(m_good)
-   {
-      if(m_i != m_argc)
-         m_good = false;
-   }
-   return m_good;
+   if(!m_good) return *this;
+
+   if(m_i >= m_argc)
+      m_good = false;
+   else
+      f();
+
+   return *this;
 }
