@@ -23,6 +23,7 @@ REWINDOW_SRC = \
 	src/rewindow/commandLine.cpp \
 	src/rewindow/error.cpp \
 	src/rewindow/main.cpp \
+	src/rewindow/printer.cpp \
 	src/rewindow/walker.cpp \
 
 REWINDOW_DEBUG_OBJ = $(subst src,$(OBJ_DIR)/debug,$(patsubst %.cpp,%.o,$(REWINDOW_SRC)))

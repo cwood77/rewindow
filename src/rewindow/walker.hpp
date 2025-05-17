@@ -22,7 +22,7 @@ class window {
 public:
    window(HWND h);
 
-   std::wstring name() const;
+   std::string name() const;
    rect getRect() const;
 
    void move(const rect& r);

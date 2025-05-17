@@ -23,13 +23,12 @@ long rect::height() const
 
 window::window(HWND h) : m_h(h) {}
 
-std::wstring window::name() const
+std::string window::name() const
 {
-   int length = ::GetWindowTextLengthW(m_h);
-   auto buffer = std::unique_ptr<wchar_t[]>(new wchar_t[length+1]);
-   ::memset(buffer.get(),0,sizeof(wchar_t)*(length+1));
-   ::GetWindowTextW(m_h,buffer.get(),length+1);
-   return std::wstring(buffer.get());
+   char buffer[MAX_PATH];
+   ::memset(buffer,0,sizeof(char)*MAX_PATH);
+   ::GetWindowTextA(m_h,buffer,MAX_PATH);
+   return std::string(buffer);
 }
 
 rect window::getRect() const

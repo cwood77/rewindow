@@ -1,10 +1,16 @@
 #include "commandLine.hpp"
 #include "error.hpp"
+#include "printer.hpp"
+#include "walker.hpp"
 #include <iostream>
 
 namespace {
 
-void capture() {}
+void capture()
+{
+   printer p;
+   windowWalker::walk([&](auto& w){ p.print(w); });
+}
 
 void apply(const std::string& profile) {}
 
