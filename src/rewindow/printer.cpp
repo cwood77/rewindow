@@ -1,6 +1,13 @@
 #include "printer.hpp"
 #include <iostream>
 
+printer::printer()
+{
+   std::cout << "; Save this to a file and reuse it with the --apply switch" << std::endl;
+   std::cout << "; Remove the windows you don't want to move" << std::endl;
+   std::cout << "; Change top(f) to top(t) to also set the window topmost in Z order" << std::endl;
+}
+
 void printer::print(const window& w) const
 {
    if(w.name().empty())
