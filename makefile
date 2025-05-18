@@ -23,6 +23,7 @@ REWINDOW_SRC = \
 	src/rewindow/commandLine.cpp \
 	src/rewindow/error.cpp \
 	src/rewindow/main.cpp \
+	src/rewindow/parser.cpp \
 	src/rewindow/printer.cpp \
 	src/rewindow/walker.cpp \
 

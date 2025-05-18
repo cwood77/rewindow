@@ -1,6 +1,8 @@
 #include "commandLine.hpp"
 #include "error.hpp"
+#include "parser.hpp"
 #include "printer.hpp"
+#include "profile.hpp"
 #include "walker.hpp"
 #include <iostream>
 
@@ -12,7 +14,11 @@ void capture()
    windowWalker::walk([&](auto& w){ p.print(w); });
 }
 
-void apply(const std::string& profile) {}
+void apply(const std::string& filePath)
+{
+   profile p;
+   parser(p).parse(filePath);
+}
 
 void printUsage()
 {

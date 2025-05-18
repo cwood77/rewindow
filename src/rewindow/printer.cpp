@@ -23,5 +23,5 @@ void printer::print(const window& w) const
       << r.bottom
    << ") ";
 
-   std::cout << "name: '" << w.name() << "'" << std::endl;
+   std::cout << "name: " << w.name() << std::endl;
 }
