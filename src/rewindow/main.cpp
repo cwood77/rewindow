@@ -1,3 +1,4 @@
+#include "applier.hpp"
 #include "commandLine.hpp"
 #include "error.hpp"
 #include "parser.hpp"
@@ -18,6 +19,8 @@ void apply(const std::string& filePath)
 {
    profile p;
    parser(p).parse(filePath);
+   applier a(p);
+   windowWalker::walk([&](auto& w){ a.apply(w); });
 }
 
 void printUsage()

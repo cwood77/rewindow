@@ -20,6 +20,7 @@ clean:
 # rewindow
 
 REWINDOW_SRC = \
+	src/rewindow/applier.cpp \
 	src/rewindow/commandLine.cpp \
 	src/rewindow/error.cpp \
 	src/rewindow/main.cpp \

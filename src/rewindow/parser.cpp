@@ -38,8 +38,6 @@ void parser::parseLine(const std::string& line)
    // top(f) pos(634,0,1286,678) name: parser.cpp (~\dev\rewindow\src\rewindow) - GVIM
    char topC;
    int l,t,r,b,n;
-   char name[260];
-   ::memset(name,0,260);
    int rval = ::sscanf(
       line.c_str(),
       "top(%c) pos(%d,%d,%d,%d) name: %n",
@@ -51,14 +49,16 @@ void parser::parseLine(const std::string& line)
          .raise();
 
    bool top = false;
-   if(topC == '1')
+   if(topC == 't')
       top = true;
-   else if(topC == '0')
+   else if(topC == 'f')
       ;
    else
       error(errLoc,"illegal value for 'top'")
          .with("line",line)
          .raise();
+
+   const char *name = line.c_str() + n;
 
    auto& w = m_profile.windows[name];
    w.top      = top;
